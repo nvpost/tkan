@@ -136,6 +136,6 @@ h1, h2, h3{
 .list_item>span{
 	padding:5px;
 }
-.list_item_del{
+#list_item_del{
 	cursor: pointer;
 }

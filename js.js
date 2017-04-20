@@ -72,6 +72,7 @@ $(".items").html(goods)
 //элементы магазина
 
 var order=[]
+var discount=0
 function setItem(e){
 	drowSumm()
 
@@ -98,19 +99,25 @@ function setOrder(name, price, count){
 			}
 		if(z>-1){order[i]=rowOrder}	
 		else{order.push(rowOrder)}
-		drowSumm()		
+		drowSumm(discount)		
 }
-
-function drowSumm(){
+function drowSumm(d){
 	var cost=0
 	var count=0
 	var list=""
+	var disc=0
+
 	for( i in order){
-		cost=cost+(order[i][1]*order[i][2])
+		cost=parseFloat((order[i][1]*order[i][2]))
+		if(d>0){
+			disc=d*parseFloat((order[i][1]*order[i][2]))
+			cost-=disc
+		}	
+			
 		list+="<div class='list_item'>"
 		list+="<span id='list_item_name'>"+order[i][0]+"</span>"
 		list+="<span id='list_item_count'> - "+order[i][2]+"шт. </span>"
-		list+="<span id='list_item_cost'>"+(order[i][1]*order[i][2])+"руб. </span>"
+		list+="<span id='list_item_cost'>"+cost+"руб. </span>"
 		list+="<span id='list_item_del' onclick='delItem(this)'> "+"<i class='fa fa-times'></i>"+" </span>"
 		list+="</div>"
 	}
@@ -121,6 +128,20 @@ function drowSumm(){
 }
 function delItem(e){
 	order.splice(i,1)
-	drowSumm()
+	drowSumm(discount)
 }
+
+
+$('select').change(function(){
+	var disc=$(this).val()
+	if(disc==0){
+		$('select').prop('disabled', false)
+	}else{
+		$('select').prop('disabled', true)
+		$(this).prop('disabled', false)
+	}
+	discount = parseFloat(disc)/100
+	drowSumm(discount)
+
+})
 
