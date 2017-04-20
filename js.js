@@ -70,13 +70,57 @@ $(".items").html(goods)
 }
 
 //элементы магазина
+
+var order=[]
 function setItem(e){
-	var price=$(e).parent().find('.item_price').val()
-	var costPlace=$(e).parent().find('.item_cost')
-	cVal=$(e).val()
+	drowSumm()
+
+	var par=e.parentNode.parentNode
+	var price=parseInt($(par).find('.item_price').text())
+	var name=$(par).find('.item_name').text()
+	var costPlace=$(par).find('.item_cost')
+	cVal=parseInt($(e).val())
 	cost=price*cVal
-	costPlace.text()
+	
+	setOrder(name, price, cVal)
+
+
+	costPlace.text(cost+" руб.")
+}
+//функция блока суммы
+
+function setOrder(name, price, count){
+	var rowOrder=[]
+	var z=-1;
+	rowOrder.push(name, price, count)
+			for(i in order){
+				if(order[i][0]==name){z=i}	
+			}
+		if(z>-1){order[i]=rowOrder}	
+		else{order.push(rowOrder)}
+		drowSumm()		
 }
 
-
+function drowSumm(){
+	var cost=0
+	var count=0
+	var list=""
+	for( i in order){
+		cost=cost+(order[i][1]*order[i][2])
+		list+="<div class='list_item'>"
+		list+="<span id='list_item_name'>"+order[i][0]+"</span>"
+		list+="<span id='list_item_count'> - "+order[i][2]+"шт. </span>"
+		list+="<span id='list_item_cost'>"+(order[i][1]*order[i][2])+"руб. </span>"
+		list+="<span id='list_item_del' onclick='delItem(this)'> "+"<i class='fa fa-times'></i>"+" </span>"
+		list+="</div>"
+	}
+	$('.list_order').html(list)
+	$(".total_price_dig").text(cost)
+	$('.summ').slideDown();
+	$('.summ').css('display', 'table-cell');
+}
+function delItem(e){
+	order.splice(i,1)
+	drowSumm()
+}
 

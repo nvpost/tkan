@@ -1,6 +1,9 @@
 body{
 	font-family: 'Roboto', sans-serif;
 }
+h1, h2, h3{
+	margin: 3px;
+}
 .goods-container{
 	border: 2px solid gray;
 	border-radius: 5px;
@@ -18,12 +21,12 @@ body{
 }
 .catalog{
 	width: 80%;
-	height: 30%;
 	margin: 2%;
 }
-.sub-catalog, .cat1{
-	display: inline-block;
+.sub-catalog, .cat1, .summ{
+	display: table-cell;
 	width: 230px;
+	height: 400px;
 	text-align: center;
 	vertical-align: top;
 }
@@ -56,7 +59,7 @@ body{
 	display: inline-block;
 	margin-left: 10px;
 	margin-bottom: 5px;
-	font-size: 14px;	
+	font-size: 16px;	
 }
 .item_name{
 	font-weight: bold;
@@ -72,4 +75,67 @@ body{
 	padding: 5px;
 	cursor: pointer;
 
+}
+/*Суммарные показатели*/
+.summ{
+	width: 98%;
+	text-align: right;
+	display: none;
+	vertical-align: bottom;
+}
+.disc{
+	display: inline-block;
+	margin-left: 10px;
+	padding: 5px;
+}
+.disc_select{
+	height: 30px;
+	width: 60px;
+	padding: 2px;
+	font-size: 16px;
+	border-radius: 3px;
+
+}
+#total_price{
+	font-size: 16px;
+	color: red;
+}
+.total_price_dig{
+	font-size: 20px;
+	font-weight: bold;
+}
+.total_price_word{
+	font-weight: bold;
+}
+/*Кнопка*/
+.btn {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  padding: .5em 2em;
+  outline: none;
+  border-width: 2px 0;
+  border-style: solid none;
+  border-color: #FDBE33 #000 #D77206;
+  border-radius: 6px;
+  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  transition: 0.2s;
+  cursor: pointer;
+} 
+.btn:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
+.btn:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }
+/*конец кнопки*/
+
+
+/*Блок list_item*/
+.list_item{
+	border-bottom: 1px solid gray;
+	margin-bottom: 6px;
+	padding-bottom: 5px;
+}
+.list_item>span{
+	padding:5px;
+}
+.list_item_del{
+	cursor: pointer;
 }
